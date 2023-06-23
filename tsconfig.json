@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        "allowUnreachableCode": false,
+        "allowSyntheticDefaultImports": true,
+        "alwaysStrict": true,
+        "diagnostics": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": false,
+        "jsx": "react-jsx",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES6",
+        "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    },
+    "exclude": [
+        "dist",
+        "node_modules",
+        "src/**/*.test.tsx",
+        "src/**/*.stories.tsx",
+        "doc"
+    ],
+    "include": [
+        "./src/css.d.ts",
+        "./src/module.d.ts",
+        "./src/global.d.ts",
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+        "./src/**/*.css",
+        "./src/**/*.svg",
+        "./src/**/*.png",
+        "./src/**/*.jpg",
+        "./src/**/*.jpeg",
+        "./src/**/*.gif"
+    ]
+}
