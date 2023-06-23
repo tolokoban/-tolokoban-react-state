@@ -17,8 +17,7 @@
         "build": "rollup -c",
         "prelink": "npm run build",
         "link": "npm link",
-        "pub": "npm publish --access public",
-        "watch": "rollup -cw"
+        "pub": "npm publish --access public"
     },
     "devDependencies": {
         "@babel/core": "^7.22.5",
