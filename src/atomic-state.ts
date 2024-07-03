@@ -94,9 +94,17 @@ export default class AtomicState<T> {
     }
 
     private saveSession(value: T) {
-        const text = JSON.stringify(value)
-        const hash = computeHash(text)
-        window.sessionStorage.setItem(this.sessionId, `${hash}${text}`)
+        try {
+            const text = JSON.stringify(value)
+            const hash = computeHash(text)
+            window.sessionStorage.setItem(this.sessionId, `${hash}${text}`)
+        } catch (ex) {
+            console.warn(
+                `Unable to save the following value in item "${this.sessionId}" of session storage:`,
+                value,
+                ex
+            )
+        }
     }
 
     private restoreSession() {
@@ -127,5 +135,5 @@ function computeHash(content: string): string {
         const c = content.charCodeAt(i)
         digits[i % digits.length] += c
     }
-    return digits.map((v) => DIGITS[v % DIGITS.length]).join("")
+    return digits.map(v => DIGITS[v % DIGITS.length]).join("")
 }
