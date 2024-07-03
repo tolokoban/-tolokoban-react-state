@@ -49,6 +49,15 @@ export default class AtomicState<T> {
         }
     }
 
+    useListener(listener: (value: T) => void): void {
+        React.useEffect(() => {
+            this.listeners.add(listener)
+            return () => {
+                this.listeners.delete(listener)
+            }
+        }, [])
+    }
+
     useValue(): T {
         const [value, setValue] = React.useState(this.currentValue)
         React.useEffect(() => {
