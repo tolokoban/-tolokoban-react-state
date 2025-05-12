@@ -11,13 +11,9 @@ export interface AtomicStateOptions<T> {
 }
 
 export default class AtomicState<T> {
-    private static counter = 0
     private currentValue: T
     private readonly listeners = new Set<(value: T) => void>()
     private readonly id: string
-    private readonly sessionId = `AtomicState:${(AtomicState.counter++).toString(
-        16
-    )}\r`
 
     constructor(
         initialValue: T,
@@ -28,9 +24,6 @@ export default class AtomicState<T> {
             : initialValue
         this.id = `AtomicState\n${options.storage?.id}`
         if (options.storage) this.loadFromStorage()
-        else {
-            this.restoreSession()
-        }
     }
 
     get value() {
@@ -43,7 +36,6 @@ export default class AtomicState<T> {
 
         this.currentValue = value
         if (storage) window.localStorage.setItem(this.id, JSON.stringify(value))
-        else this.saveSession(value)
         for (const listener of this.listeners) {
             listener(value)
         }
@@ -101,48 +93,4 @@ export default class AtomicState<T> {
             console.error(`Unable to retrieve AtomicState "${storage.id}":`, ex)
         }
     }
-
-    private saveSession(value: T) {
-        try {
-            const text = JSON.stringify(value)
-            const hash = computeHash(text)
-            window.sessionStorage.setItem(this.sessionId, `${hash}${text}`)
-        } catch (ex) {
-            console.warn(
-                `Unable to save the following value in item "${this.sessionId}" of session storage:`,
-                value,
-                ex
-            )
-        }
-    }
-
-    private restoreSession() {
-        const content = window.sessionStorage.getItem(this.sessionId)
-        if (!content) return
-
-        const hash = content.substring(0, 16)
-        const text = content.substring(16)
-        if (computeHash(text) !== hash) {
-            console.error("Atomic state has been corrupted!", this.sessionId)
-            return
-        }
-
-        try {
-            const data = JSON.parse(text) as T
-            this.value = data
-        } catch (ex) {
-            console.error("Atomic state is an invalid JSON!", this.sessionId)
-        }
-    }
-}
-
-const DIGITS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
-function computeHash(content: string): string {
-    const digits = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    for (let i = 0; i < content.length; i++) {
-        const c = content.charCodeAt(i)
-        digits[i % digits.length] += c
-    }
-    return digits.map(v => DIGITS[v % DIGITS.length]).join("")
 }
