@@ -4,7 +4,7 @@ import RollupTypescriptPlugin from "rollup-plugin-typescript2"
 import RollupPostCssPlugin from "rollup-plugin-postcss"
 import Autoprefixer from "autoprefixer"
 import Typescript from "typescript"
-import pkg from "./package.json" assert { type: "json" }
+import pkg from "./package.json" with { type: "json" }
 
 export default {
     input: "src/index.ts",
