@@ -22,12 +22,12 @@
     "devDependencies": {
         "@babel/core": "^7.27.1",
         "@rollup/plugin-commonjs": "^28.0.3",
-        "@rollup/plugin-node-resolve": "^15.3.1",
+        "@rollup/plugin-node-resolve": "^16.0.1",
         "@types/node": "^22.15.17",
-        "@types/react": "^18.3.21",
-        "@types/react-dom": "^18.3.7",
+        "@types/react": "^19.1.6",
+        "@types/react-dom": "^19.1.5",
         "autoprefixer": "^10.4.21",
-        "babel-loader": "^9.2.1",
+        "babel-loader": "^10.0.0",
         "colord": "^2.9.3",
         "json5": "^2.2.3",
         "postcss": "^8.5.3",
@@ -38,8 +38,8 @@
         "typescript-plugin-css-modules": "^5.1.0"
     },
     "peerDependencies": {
-        "react": "^18.3.1",
-        "react-dom": "18.3.1"
+        "react": "^19.1.0",
+        "react-dom": "19.1.0"
     },
     "eslintConfig": {
         "extends": "react-app"
