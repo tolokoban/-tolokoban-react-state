@@ -77,6 +77,14 @@ export default class AtomicState<T> {
         ]
     }
 
+    addListener(listener: (value: T) => void) {
+        this.listeners.add(listener)
+    }
+
+    removeListener(listener: (value: T) => void) {
+        this.listeners.delete(listener)
+    }
+
     private loadFromStorage() {
         const { storage } = this.options
         if (!storage) return
