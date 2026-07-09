@@ -20,22 +20,22 @@
         "pub": "npm publish --access public"
     },
     "devDependencies": {
-        "@babel/core": "^7.27.1",
-        "@types/node": "^25.0.3",
-        "@types/react": "^19.2.7",
+        "@babel/core": "^8.0.1",
+        "@types/node": "^26.1.1",
+        "@types/react": "^19.2.17",
         "@types/react-dom": "^19.2.3",
-        "autoprefixer": "^10.4.21",
-        "babel-loader": "^10.0.0",
-        "build-typescript-library": "^0.9.0",
+        "autoprefixer": "^10.5.2",
+        "babel-loader": "^10.1.1",
+        "build-typescript-library": "^0.12.1",
         "colord": "^2.9.3",
         "json5": "^2.2.3",
-        "postcss": "^8.5.6",
+        "postcss": "^8.5.16",
         "typescript": "^5.9.3",
-        "typescript-plugin-css-modules": "^5.1.0"
+        "typescript-plugin-css-modules": "^5.2.0"
     },
     "peerDependencies": {
-        "react": "^19.2.4",
-        "react-dom": "^19.2.4"
+        "react": "^19.2.7",
+        "react-dom": "^19.2.7"
     },
     "eslintConfig": {
         "extends": "react-app"
