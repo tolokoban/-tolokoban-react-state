@@ -29,6 +29,7 @@
         "build-typescript-library": "^0.12.1",
         "colord": "^2.9.3",
         "json5": "^2.2.3",
+        "oxlint": "^1.88.0",
         "postcss": "^8.5.16",
         "typescript": "^5.9.3",
         "typescript-plugin-css-modules": "^5.2.0"

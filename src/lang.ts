@@ -16,6 +16,15 @@ const atomicLanguage = new AtomicState(initialLang, {
   },
 });
 
+export function langGet() {
+    return atomicLanguage.value
+}
+
+export function langSet(lang: string) {
+    atomicLanguage.value=lang
+    return atomicLanguage.value
+}
+
 export function extractMultiLang(
   multilang: string | Record<string, string> | undefined | null,
   overrideLang?: string,
