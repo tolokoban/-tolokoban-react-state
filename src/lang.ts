@@ -1,5 +1,5 @@
 import React from "react";
-import AtomicState from "./atomic-state"
+import AtomicState from "./atomic-state";
 
 const initialLang = (
   globalThis.localStorage.getItem("Language") ??
@@ -17,12 +17,12 @@ const atomicLanguage = new AtomicState(initialLang, {
 });
 
 export function langGet() {
-    return atomicLanguage.value
+  return atomicLanguage.value;
 }
 
 export function langSet(lang: string) {
-    atomicLanguage.value=lang
-    return atomicLanguage.value
+  atomicLanguage.value = lang;
+  return atomicLanguage.value;
 }
 
 export function extractMultiLang(
@@ -52,11 +52,9 @@ export type Translator<T extends Translation> = Readonly<
   {
     +readonly [key in keyof T]: string;
   } & {
-    +readonly [key in keyof T as `${string & key}\$`]: (
-      ...vars: string[]
-    ) => string;
+    +readonly [key in keyof T as `${string & key}\$`]: (...vars: string[]) => string;
   } & {
-    $lang: () => string,
+    $lang: () => string;
     /**
      * Extract a text for the current language (or `overrideLang` is specified).
      * @param multilang Dictionary of textx per lang
@@ -81,12 +79,7 @@ export function useTanslatorGeneric<T extends Translation>(
       if (variations.includes(key)) {
         otherTranslations[key]()
           .then((obj) => setTranslation(obj.default))
-          .catch((ex) =>
-            console.error(
-              `Unable to load translation for language "${key}"!`,
-              ex,
-            ),
-          );
+          .catch((ex) => console.error(`Unable to load translation for language "${key}"!`, ex));
         return;
       }
     }
@@ -109,9 +102,9 @@ function makeTranslator<T extends Translation>(dico: T): Translator<T> {
   }
   tr.$extract = extractMultiLang;
   tr.$lang = (lang?: string) => {
-    if (lang) atomicLanguage.value=lang
-    return atomicLanguage.value
-  }
+    if (lang) atomicLanguage.value = lang;
+    return atomicLanguage.value;
+  };
   return tr as Translator<T>;
 }
 
@@ -143,5 +136,5 @@ function getLangVariations(lang: string): string[] {
 }
 
 function isString(data: unknown): data is string {
-    return typeof data === "string"
+  return typeof data === "string";
 }
